@@ -1,34 +1,50 @@
 'use strict';
+/**
+ * Dependencies
+ */
+var fs = require('fs');
+var koa = require('koa');
+var mongoose = require('mongoose');
+var passport = require('koa-passport');
 
 /**
- * Entry point
- * Initiates database connection
- * Starts listening for requests on configured port
+ * Config
  */
+var config = require('./config/config');
 
-var config = require('./server/config/config'),
-    mongo = require('./server/config/mongo'),
-    mongoSeed = require('./server/config/mongo-seed'),
-    koaConfig = require('./server/config/koa'),
-    co = require('co'),
-    koa = require('koa'),
-    app = koa();
+/**
+ * Connect to database
+ */
+// mongoose.connect(config.mongo.url);
+// mongoose.connection.on('error', function (err) {
+//   console.log(err);
+// });
 
-module.exports = app;
-
-app.init = co(function *() {
-  // mongo
-  yield mongo.connect();
-  yield mongoSeed();
-
-  // koa
-  koaConfig(app);
-
-  // http server
-  app.server = app.listen(config.app.port);
+/**
+ * Load the models
+ */
+var models_path = config.app.root + '/src/controllers';
+fs.readdirSync(models_path).forEach(function (file) {
+  if (~file.indexOf('js')) {
+    require(models_path + '/' + file);
+  }
 });
 
-// auto init if this app is not being initialized by another module (i.e. using require('./app').init();)
+/**
+ * Server
+ */
+var app = module.exports  = koa();
+
+require('./config/passport')(passport, config);
+
+require('./config/koa')(app, config, passport);
+
+// Routes
+require('./config/routes')(app, passport);
+
+// Start app
 if (!module.parent) {
-  app.init();
+ app.listen(config.app.port);
+ console.log('Server started, listening on port: ' + config.app.port);
 }
+console.log('Environment: ' + config.app.env);

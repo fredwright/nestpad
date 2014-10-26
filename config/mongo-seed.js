@@ -6,7 +6,7 @@ var mongo = require('./mongo'),
 // EXPORTS
 
 module.exports = function *(overwrite) {
-  var count = yield mongo.entries.count({}, {limit: 1});
+  var count = yield mongo.users.count({}, {limit: 1});
   if (overwrite || count === 0) {
 
     // clear database

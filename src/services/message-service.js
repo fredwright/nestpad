@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash'),
-    mongo = require('../config/mongo'),
+    mongo = require('../../config/mongo'),
     ObjectID = mongo.ObjectID;
 
 // EXPORTS
