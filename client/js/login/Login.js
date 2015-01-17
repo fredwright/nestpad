@@ -10,9 +10,6 @@ var LoginActions = require('./LoginActions');
 var LoginStore = require('./LoginStore');
 
 var Login = React.createClass({
-  propTypes: {
-    onLogin: React.PropTypes.func.isRequired
-  },
   mixins: [
     Reflux.connect(LoginStore, 'failed')
   ],
