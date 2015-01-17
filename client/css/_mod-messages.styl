@@ -1,0 +1,64 @@
+
+// ====================================================
+
+/* MESSAGES */
+
+// ====================================================
+
+$message-image-size = 3rem
+
+// ====================================================
+
+message-icon()
+  float: right
+  height: $structure-text-height
+  width: $structure-text-height
+  border-radius: 50%
+  margin: 0 0 0 .5rem
+
+// ====================================================
+
+.messages
+  profile-row()
+
+.message
+  structure-block()
+
+.message__head
+  structure-block-row()
+
+.message__title
+  structure-block-title()
+
+.message__hide-me
+  message-icon()
+  background-color: $color-yellow
+  
+.message__hide-others
+  message-icon()
+  background-color: $color-blue
+
+.message__add
+  message-icon()
+  background-color: $color-pink
+
+.message__responses
+  structure-block-row()
+
+.response
+  clearfix()
+  margin: 2rem
+
+.response__image
+  structure-image($message-image-size)
+
+.response__name
+  structure-block-text()
+  font-size: $font-subheading
+
+.response__message
+  structure-block-text()
+  width: 100%
+  margin-left: ($message-image-size*3/2)
+
+//===================================================

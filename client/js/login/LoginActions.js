@@ -12,7 +12,7 @@
   );
 
   LoginActions.login.preEmit = function(username, password) {
-    if(username === 'fail') LoginActions.fail();
+    if (username === 'fail') return LoginActions.fail();
     LoginActions.success();
   };
 

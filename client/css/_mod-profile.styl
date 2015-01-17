@@ -1,0 +1,67 @@
+
+// ====================================================
+
+/* PROFILE */
+
+// ====================================================
+
+$profile-head-height = 12rem
+$profile-head-margin = 4rem
+
+$profile-tabs-height = 4rem
+
+// ====================================================
+
+profile-row()
+  clearfix()
+  margin: $profile-head-margin
+
+// ====================================================
+
+.profile
+  structure-page()
+
+.profile__head
+  profile-row()
+
+.profile__image
+  float: left
+  width: $profile-head-height
+  height: $profile-head-height
+  margin-right: $profile-head-margin
+  border-radius: 50%
+  background-color: $color-green
+
+.profile__info
+  float: left
+  height: $profile-head-height
+
+.profile__info__name
+  height: ($profile-head-height*0.5)
+  line-height: ($profile-head-height*0.5)
+  font-size: $font-heading
+
+.profile__info__uni
+  height: ($profile-head-height*0.2)
+  line-height: ($profile-head-height*0.2)
+  font-size: $font-subheading
+
+.profile__info__course
+  height: ($profile-head-height*0.2)
+  line-height: ($profile-head-height*0.2)
+  font-size: $font-subheading
+
+.profile__tabs
+  profile-row()
+  display: flex
+  height: $profile-tabs-height
+  line-height: $profile-tabs-height
+  border-bottom: 1px solid $color-font
+
+.profile__tabs__tab
+  nav-list-item()
+.profile__tabs__tab--active
+  @extend .profile__tabs__tab
+  border-bottom: 4px solid $color-green
+
+//===================================================

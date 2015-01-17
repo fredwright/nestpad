@@ -1,5 +1,7 @@
-/* @jsx React.DOM */
-/* @flow */
+/** 
+ * @jsx React.DOM
+ * @flow
+*/
 
 var React = require('react/addons');
 var Reflux = require('reflux');
@@ -15,8 +17,7 @@ var Login = React.createClass({
   getInitialState: function() {    
     return {
       username: 'user123',
-      password: 'password',
-      authenticated: false
+      password: 'password'
     };
   },
   
@@ -26,11 +27,10 @@ var Login = React.createClass({
   },
 
   onAuthenticate: function(authenticated) {
-    this.setState({authenticated: authenticated});
     if (authenticated) {
       this.props.onLogin();  
     } else {
-      this.setState({authenticationFailed: true});
+      this.setState({failed: true});
     }
   },
 
@@ -59,7 +59,7 @@ var Login = React.createClass({
 
         <button onClick={ this.handleLogin }>Login</button>
 
-        { this.state.authenticationFailed ? <p>Oops, not this time!</p>: null }
+        { this.state.failed ? <p>Oops, not this time!</p>: null }
       </div>);
   }
 });

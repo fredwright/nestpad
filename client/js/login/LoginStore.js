@@ -14,6 +14,10 @@
 
     onFail: function() {
       this.trigger(false);
+    },
+
+    onLogoff: function() {
+      this.trigger(false);
     }
   });
 

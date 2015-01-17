@@ -1,0 +1,64 @@
+
+// ====================================================
+
+/* NAV */
+
+// ====================================================
+
+$nav-height = 4rem
+
+// ====================================================
+
+nav-item()
+  text-align: center
+  cursor: pointer
+
+nav-list-item()
+  float: left
+  width: (100/3)%
+  line-height: $nav-height
+  font-size: $font-nav
+  text-align: center
+  cursor: pointer
+
+// ====================================================
+
+.nav
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
+  height: $nav-height
+  border-bottom: 1px solid $color-font
+
+.nav__logo
+  nav-item()
+  width: 20%
+
+.nav__list
+  nav-item()
+  width: 40%
+
+.nav__list__profile
+  nav-list-item()
+.nav__list__profile.active
+  @extend .nav__list__profile
+  border-bottom: 4px solid $color-green
+
+.nav__list__discover
+  nav-list-item()
+.nav__list__discover.active
+  @extend .nav__list__discover
+  border-bottom: 4px solid $color-blue
+  
+.nav__list__houses
+  nav-list-item()
+.nav__list__houses.active
+  @extend .nav__list__houses
+  border-bottom: 4px solid $color-pink
+  
+.nav__logout
+  nav-item()
+  width: 20%
+
+//===================================================
