@@ -13,9 +13,7 @@ var config = require('./server/config/config'),
     koa = require('koa'),
     app = koa();
 
-module.exports = app;
-
-app.init = co(function *() {
+co(function *() {
   // mongo
   yield mongo.connect();
   yield mongoSeed();
@@ -26,8 +24,3 @@ app.init = co(function *() {
   // http server
   app.server = app.listen(config.app.port);
 });
-
-// auto init if this app is not being initialized by another module (i.e. using require('./app').init();)
-if (!module.parent) {
-  app.init();
-}

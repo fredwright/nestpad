@@ -16,6 +16,7 @@
     "vinyl-source-stream": "^1.0.0"
   },
   "dependencies": {
+    "bluebird": "^2.7.1",
     "co": "^4.1.0",
     "co-body": "^1.0.0",
     "co-mongo": "0.0.2",

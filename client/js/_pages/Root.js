@@ -8,11 +8,11 @@ var R = require('ramda');
 var Router = require('../_core/routing/Router');
 var Layout = require('../_core/layout/Layout');
 
-var Login = require('./LoginPage');
-var Home = require('./HomePage');
-var Profile = require('./ProfilePage');
-var Discover = require('./DiscoverPage');
-var Houses = require('./HousesPage');
+var Login = require('./Login');
+var Home = require('./Home');
+var Profile = require('./Profile');
+var Discover = require('./Discover');
+var Houses = require('./Houses');
 
 var LoginStore = require('../login/LoginStore');
 

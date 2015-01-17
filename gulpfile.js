@@ -25,6 +25,12 @@ var nodemon_instance;
 
 // PROCESS
 
+// move main html
+gulp.task('html', function() {
+  return gulp.src(app + '/index.html')
+    .pipe(gulp.dest(dist));
+});
+
 // compile stylus
 gulp.task('css', function() {
   return gulp.src(app + css + '/main.styl')
@@ -49,6 +55,7 @@ gulp.task('js', function() {
 
 // watch
 gulp.task('watch', function() {
+  gulp.watch([app + '/*.html'],['html']);
   gulp.watch([app + css + '/*.styl'],['css']);
   gulp.watch([app + js + '/**/*.js', app + js + '/*.jsx'],['js']);
 });
@@ -64,4 +71,4 @@ gulp.task("nodemon", function () {
 });
 
 // default
-gulp.task('default', [ 'css', 'js', 'watch', 'nodemon' ]);
+gulp.task('default', [ 'html', 'css', 'js', 'watch', 'nodemon' ]);
