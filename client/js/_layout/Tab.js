@@ -8,6 +8,9 @@ var React = require('react/addons'),
     Link = Router.Link;
 
 var Tab = React.createClass({
+  propTypes: {
+    to: React.PropTypes.string.isRequired
+  },
 
   render: function() {
     var className = 'nav__list__'+this.props.to;

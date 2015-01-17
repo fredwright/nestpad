@@ -8,6 +8,9 @@ var React = require('react');
 var Nav = require('./Nav');
 
 var Layout = React.createClass({
+  propTypes: {
+    route: React.PropTypes.func.isRequired
+  },
   
   render: function() {
     return (

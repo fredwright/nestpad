@@ -10,8 +10,8 @@ var React = require('react'),
 
 var Layout = require('./Layout');
 
-var Login = require('../../_pages/Login');
-var LoginStore = require('../../login/LoginStore');
+var Login = require('../login/Login');
+var LoginStore = require('../login/LoginStore');
 
 
 var App = React.createClass({
@@ -24,7 +24,7 @@ var App = React.createClass({
   },
 
   onLogin: function() { this.setState({authenticated: true}); },
-  
+
   render: function() {
     return (
       <div>

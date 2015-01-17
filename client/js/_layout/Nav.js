@@ -9,7 +9,7 @@ var React = require('react/addons'),
 
 var Tab = require('./Tab');
 
-var LoginActions = require('../../login/LoginActions');
+var LoginActions = require('../login/LoginActions');
 
 var Nav = React.createClass({
 

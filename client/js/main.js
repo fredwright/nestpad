@@ -6,16 +6,16 @@ var React = require('react'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute;
 
-var App = require('./_core/layout/App');
+var App = require('./_layout/App');
 
-var Home = require('./_pages/Home');
-var Profile = require('./_pages/Profile');
-var Discover = require('./_pages/Discover');
-var Houses = require('./_pages/Houses');
+var Home = require('./_pages/Home'),
+    Profile = require('./_pages/Profile'),
+    Discover = require('./_pages/Discover'),
+    Houses = require('./_pages/Houses');
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="home" handler={Home}/>
+    <Route name="home" path="/" handler={Home}/>
     <Route name="profile" handler={Profile}/>
     <Route name="discover" handler={Discover}/>
     <Route name="houses" handler={Houses}/>
@@ -23,6 +23,6 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, function (Handler) {
+Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.body);
 });

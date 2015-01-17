@@ -6,10 +6,13 @@
 var React = require('react/addons');
 var Reflux = require('reflux');
 
-var LoginActions = require('../login/LoginActions');
-var LoginStore = require('../login/LoginStore');
+var LoginActions = require('./LoginActions');
+var LoginStore = require('./LoginStore');
 
 var Login = React.createClass({
+  propTypes: {
+    onLogin: React.PropTypes.func.isRequired
+  },
   mixins: [
     Reflux.listenTo(LoginStore,'onAuthenticate')
   ],
