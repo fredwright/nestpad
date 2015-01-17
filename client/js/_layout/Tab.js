@@ -3,19 +3,18 @@
  * @flow
 */
 
-var React = require('react/addons'),
+var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link;
 
 var Tab = React.createClass({
   propTypes: {
-    to: React.PropTypes.string.isRequired
+    to: React.PropTypes.string.isRequired,
+    className: React.PropTypes.string
   },
 
   render: function() {
-    var className = 'nav__list__'+this.props.to;
-    
-    return <Link className={className} to={this.props.to}>{this.props.children}</Link>;
+    return <Link className={this.props.className} to={this.props.to}>{this.props.children}</Link>;
   }
 });
 

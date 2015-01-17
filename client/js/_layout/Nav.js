@@ -3,7 +3,7 @@
  * @flow
 */
 
-var React = require('react/addons'),
+var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link;
 
@@ -24,9 +24,9 @@ var Nav = React.createClass({
           <Link to="home">nestpad</Link>
         </div>
         <ul className='nav__list'>
-          <Tab to="profile">pad</Tab>
-          <Tab to="discover">pool</Tab>
-          <Tab to="houses">nest</Tab>
+          <Tab className="nav__list__profile" to="profile">pad</Tab>
+          <Tab className="nav__list__discover" to="discover">pool</Tab>
+          <Tab className="nav__list__houses" to="houses">nest</Tab>
         </ul>
         <div className='nav__logout' onClick={this.handleLogoff}>logout</div>
       </div>
