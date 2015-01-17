@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
-    mongo = require('../config/mongo'),
+var mongo = require('../config/mongo'),
     ObjectID = mongo.ObjectID;
 
 // EXPORTS
@@ -15,15 +14,15 @@ module.exports.deleteMessage = deleteMessage;
 
 function *getMessages(messageIds) {
   // get active messages
-  console.log('messages: '+messageIds)
-  var messages = yield mongo.messages.find({"id": "m1"}).toArray();
-  // var messages = yield mongo.messages.find({id: { $in: messageIds}, "deletedTime": {"$exists": false}}).toArray();
+  console.log('messages: '+messageIds);
+  var messages = yield mongo.messages.find({'id': 'm1'}).toArray();
+  // var messages = yield mongo.messages.find({id: { $in: messageIds}, 'deletedTime': {'$exists': false}}).toArray();
   messages.forEach(function (message) {
     message.id = message._id;
     delete message._id;
   });
 
-  console.log('return messages: '+messages)
+  console.log('return messages: '+messages);
   return messages;
 }
 

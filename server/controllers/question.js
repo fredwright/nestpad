@@ -2,7 +2,6 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    _ = require('lodash'),
     questionService = require('../services/question-service');
 
 // ROUTES

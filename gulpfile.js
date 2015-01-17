@@ -20,7 +20,7 @@ var app = './client',
     css = '/css',
     js = '/js';
 
-// hack around nodemon, that doesn"t wait for tasks to finish on change
+// hack around nodemon, that doesn't wait for tasks to finish on change
 var nodemon_instance;
 
 // PROCESS
@@ -38,7 +38,7 @@ gulp.task('css', function() {
 
 // compile javascript
 gulp.task('js', function() {
-  browserify(app + js + '/main.js')
+  return browserify({entries: app + js + '/main.js', debug: true})
     .transform(reactify)
     .bundle()
     .pipe(source('bundle.js'))

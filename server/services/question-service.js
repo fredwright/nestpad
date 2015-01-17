@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
-    mongo = require('../config/mongo'),
+var mongo = require('../config/mongo'),
     ObjectID = mongo.ObjectID;
 
 // EXPORTS
@@ -15,7 +14,7 @@ module.exports.deleteQuestion = deleteQuestion;
 
 function *getQuestions() {
   // get active questions
-  var questions = yield mongo.questions.find({"deletedTime": {"$exists": false}}).toArray();
+  var questions = yield mongo.questions.find({'deletedTime': {'$exists': false}}).toArray();
   questions.forEach(function (question) {
     question.id = question._id;
     delete question._id;

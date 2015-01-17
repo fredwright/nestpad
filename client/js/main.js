@@ -1,17 +1,15 @@
+/* @flow */
+
 var React = require('react');
 
-var Router = require('./routing/Router');
+var Router = require('./_core/routing/Router');
 
-var RootPage = require('./pages/RootPage');
+var RootPage = require('./_pages/RootPage');
 
-start(RootPage, document.getElementById('app'), {
+Router.start(RootPage, document.getElementById('app'), {
+  '/': 'login',
   '/home': 'home',
   '/profile': 'profile',
   '/discover': 'discover',
-  '/properties': 'properties',
-  '/': 'login'
+  '/properties': 'properties'
 });
-
-function start(componentClass, domNode, routes, useHistory) {
-  Router.start(componentClass, domNode, routes, useHistory);
-}

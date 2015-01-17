@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
-    mongo = require('../config/mongo'),
+var mongo = require('../config/mongo'),
     ObjectID = mongo.ObjectID;
 
 // EXPORTS
@@ -17,7 +16,7 @@ module.exports.deleteUser = deleteUser;
 function *getUser(id) {
 
   // get active user
-  var user = yield mongo.users.findOne({id: id, "deletedTime": {"$exists": false}});
+  var user = yield mongo.users.findOne({id: id, 'deletedTime': {'$exists': false}});
   if (user) {
     user.id = user._id;
     delete user._id;
@@ -30,7 +29,7 @@ function *getUser(id) {
 
 function *getUsers() {
   // get active users
-  var users = yield mongo.users.find({"deletedTime": {"$exists": false}}).toArray();
+  var users = yield mongo.users.find({'deletedTime': {'$exists': false}}).toArray();
   users.forEach(function (user) {
     user.id = user._id;
     delete user._id;

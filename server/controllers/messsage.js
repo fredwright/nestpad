@@ -2,7 +2,6 @@
 
 var route = require('koa-route'),
     parse = require('co-body'),
-    _ = require('lodash'),
     messageService = require('../services/message-service'),
     userService = require('../services/user-service');
 

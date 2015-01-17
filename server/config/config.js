@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    _ = require('lodash');
+    R = require('ramda');
 
 var baseConfig = {
   app: {
@@ -41,4 +41,4 @@ var platformConfig = {
 };
 
 // override the base configuration with the platform specific values
-module.exports = _.merge(baseConfig, platformConfig[baseConfig.app.env || (baseConfig.app.env = 'development')]);
+module.exports = R.mixin(baseConfig, platformConfig[baseConfig.app.env || (baseConfig.app.env = 'development')]);
