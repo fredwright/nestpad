@@ -8,13 +8,10 @@ var gulp = require('gulp');
 var stylus = require('gulp-stylus'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
-    concat = require('gulp-concat'),
     minifyCSS = require('gulp-minify-css'),
     browserify = require('browserify'),
     reactify = require('reactify'),
-    envify = require('envify'),
     source = require('vinyl-source-stream'),
-    connect = require('gulp-connect'),
     nodemon = require('gulp-nodemon');
 
 // paths
@@ -23,10 +20,8 @@ var app = './client',
     css = '/css',
     js = '/js';
 
-// Hack around nodemon, that doesn"t wait for tasks to finish on change
+// hack around nodemon, that doesn"t wait for tasks to finish on change
 var nodemon_instance;
-
-//======================================================
 
 // PROCESS
 
@@ -38,33 +33,17 @@ gulp.task('css', function() {
     .pipe(autoprefixer())
     .pipe(minifyCSS())
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(dist))
-    .pipe(connect.reload());
+    .pipe(gulp.dest(dist));
 });
 
 // compile javascript
-// gulp.task('js', function() {
-//   return browserify({
-//       entries: app + js + '/app.jsx',
-//       debug: true,
-//     })
-//     .transform(reactify)
-//     .transform(envify)
-//     .bundle()
-//     .pipe(source('app.js'))
-//     .pipe(gulp.dest(dist))
-//     .pipe(connect.reload());
-// });
 gulp.task('js', function() {
-  browserify(app + js + '/app.jsx')
+  browserify(app + js + '/main.js')
     .transform(reactify)
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest(dist))
-    .pipe(connect.reload());
+    .pipe(gulp.dest(dist));
 });
-
-//======================================================
 
 // SERVE
 
@@ -75,13 +54,6 @@ gulp.task('watch', function() {
 });
 
 // serve
-gulp.task('connect', function() {
-  connect.server({
-    root: dist,
-    port: 9000,
-    livereload: true
-  });
-});
 gulp.task("nodemon", function () {
   if(!nodemon_instance)
     nodemon_instance = nodemon({ script:"server.js", nodeArgs: ["--harmony", "--debug"],

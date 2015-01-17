@@ -3,7 +3,8 @@
 var route = require('koa-route'),
     parse = require('co-body'),
     _ = require('lodash'),
-    messageService = require('../services/message-service');
+    messageService = require('../services/message-service'),
+    userService = require('../services/user-service');
 
 // ROUTES
 
@@ -17,8 +18,12 @@ exports.init = function (app) {
 // ROUTE FUNCTIONS
 
 function *getMessages(userId) {
+  // get user
+  console.log('user: '+userId)
+  var user = yield userService.getUser('u1');
+
   // get messages
-  var messages = yield messageService.getMessages(userId);
+  var messages = yield messageService.getMessages([user.messages]);
 
   // return
   this.body = messages;

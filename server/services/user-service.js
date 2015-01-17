@@ -1,17 +1,32 @@
 'use strict';
 
 var _ = require('lodash'),
-    mongo = require('../../config/mongo'),
+    mongo = require('../config/mongo'),
     ObjectID = mongo.ObjectID;
 
 // EXPORTS
 
+module.exports.getUser = getUser;
 module.exports.getUsers = getUsers;
 module.exports.createUser = createUser;
 module.exports.updateUser = updateUser;
 module.exports.deleteUser = deleteUser;
 
 // EXPORTED FUNCTIONS
+
+function *getUser(id) {
+
+  // get active user
+  var user = yield mongo.users.findOne({id: id, "deletedTime": {"$exists": false}});
+  if (user) {
+    user.id = user._id;
+    delete user._id;
+  } else {
+    user = {name: 'Cannot find user: '+id};
+  }
+
+  return user;
+}
 
 function *getUsers() {
   // get active users

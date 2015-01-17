@@ -8,7 +8,8 @@ var route = require('koa-route'),
 // ROUTES
 
 exports.init = function (app) {
-  app.use(route.get('/api/users/:userId', getUsers));
+  app.use(route.get('/api/users', getUsers));
+  app.use(route.get('/api/users/:userId', getUser));
   app.use(route.post('/api/users', createUser));
   app.use(route.put('/api/users/:id', updateUser));
   app.use(route.del('/api/users/:id', deleteUser));
@@ -16,12 +17,20 @@ exports.init = function (app) {
 
 // ROUTE FUNCTIONS
 
-function *getUsers(userId) {
+function *getUsers() {
   // get users
-  var users = yield userService.getUsers(userId);
+  var users = yield userService.getUsers();
 
   // return
   this.body = users;
+}
+
+function *getUser(id) {
+  // get user
+  var user = yield userService.getUser(id);
+
+  // return
+  this.body = user;
 }
 
 function *createUser() {
