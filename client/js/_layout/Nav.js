@@ -13,8 +13,8 @@ var LoginActions = require('../login/LoginActions');
 
 var Nav = React.createClass({
 
-  handleLogin: function() {
-    LoginActions.logoff();    
+  handleLogoff: function() {
+    LoginActions.logoff();
   },  
 
   render: function() {
@@ -28,7 +28,7 @@ var Nav = React.createClass({
           <Tab to="discover">pool</Tab>
           <Tab to="houses">nest</Tab>
         </ul>
-        <div className='nav__logout'>logout</div>
+        <div className='nav__logout' onClick={this.handleLogoff}>logout</div>
       </div>
     );
   }

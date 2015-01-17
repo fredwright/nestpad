@@ -14,27 +14,20 @@ var Login = React.createClass({
     onLogin: React.PropTypes.func.isRequired
   },
   mixins: [
-    Reflux.listenTo(LoginStore,'onAuthenticate')
+    Reflux.connect(LoginStore, 'failed')
   ],
   
   getInitialState: function() {    
     return {
       username: 'user123',
-      password: 'password'
+      password: 'password',
+      failed: false
     };
   },
   
   componentDidMount: function() {
     this.refs.initialFocus.getDOMNode().focus();
     this.refs.initialFocus.getDOMNode().select();
-  },
-
-  onAuthenticate: function(authenticated) {
-    if (authenticated) {
-      this.props.onLogin();  
-    } else {
-      this.setState({failed: true});
-    }
   },
 
   handleFieldChanges: function(property) {

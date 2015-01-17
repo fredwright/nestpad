@@ -4,18 +4,32 @@
 
   var Reflux = require('reflux');
 
+  var AuthenticationActions = require('./AuthenticationActions');
+
   var LoginActions = Reflux.createActions([
       'login',
-      'success',
-      'fail'
+      'fail',
+      'logoff'
     ]
   );
 
   LoginActions.login.preEmit = function(username, password) {
-    if (username === 'fail') return LoginActions.fail();
-    LoginActions.success();
+    if (authenticationService(username, password)) {
+      AuthenticationActions.set(true);
+    } else {
+      AuthenticationActions.set(false);
+      LoginActions.fail();
+    }
+  };
+
+  LoginActions.logoff.preEmit = function(username, password) {
+    AuthenticationActions.set(false);
   };
 
   module.exports = LoginActions;
 
 })();
+
+var authenticationService = function(username, password) {
+  return username !== 'fail';
+};

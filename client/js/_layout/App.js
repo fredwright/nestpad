@@ -11,24 +11,26 @@ var React = require('react'),
 var Layout = require('./Layout');
 
 var Login = require('../login/Login');
-var LoginStore = require('../login/LoginStore');
 
+var AuthenticationActions = require('../login/AuthenticationActions'),
+    AuthenticationStore = require('../login/AuthenticationStore');
 
 var App = React.createClass({
   mixins: [
-    Reflux.connect(LoginStore,"authenticated")
+    Reflux.connect(AuthenticationStore, "authenticated")
   ],
 
-  getInitialState: function () {
+  getInitialState: function() {
     return { authenticated: false };
   },
-
-  onLogin: function() { this.setState({authenticated: true}); },
+  componentDidMount: function() {
+    AuthenticationActions.get();
+  },
 
   render: function() {
     return (
       <div>
-        { this.state.authenticated? <Layout route={RouteHandler}/> : <Login onLogin={this.onLogin}/> }
+        { this.state.authenticated? <Layout route={RouteHandler}/> : <Login/> }
       </div>
     );
   }

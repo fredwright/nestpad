@@ -8,16 +8,8 @@
   var LoginStore = Reflux.createStore({
     listenables: LoginActions,
 
-    onSuccess: function() {
-      this.trigger(true);
-    },
-
     onFail: function() {
-      this.trigger(false);
-    },
-
-    onLogoff: function() {
-      this.trigger(false);
+      this.trigger(true);
     }
   });
 
