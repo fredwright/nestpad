@@ -25,7 +25,10 @@ module.exports = function (app) {
     }
 
     // if the requested path matched a file and it is served successfully, exit the middleware
-    if (yield send(this, this.path, sendOpts)) {
+    // public folder must be flat to allow for nested routing
+    var pathArray = this.path.split('/');
+    var file = '/'+pathArray[pathArray.length - 1];
+    if (yield send(this, file, sendOpts)) {
       return;
     }
     
